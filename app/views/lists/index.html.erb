@@ -1,0 +1,20 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.askmen.com/1080x540/2019/01/17-051742-best_date_night_movies_on_netflix.jpg)">
+  <div class="container">
+    <h1>Netflix and Chill</h1>
+    <p>All of my movie lists</p>
+    <%= link_to 'Create list', new_list_path, class: 'btn btn-info' %>
+  </div>
+</div>
+
+<div class="container m-3">
+ <div class="row">
+  <ol>
+    <% @lists.each do |list| %>
+    <li><%= link_to list.name, list_path(list)  %></li>
+    <% end %>
+  </ol>
+</div>
+
+
+
+</div>

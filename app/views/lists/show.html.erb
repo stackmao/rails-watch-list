@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My movie listing</title>
+</head>
+
+<body>
+
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.askmen.com/1080x540/2019/01/17-051742-best_date_night_movies_on_netflix.jpg)">
+    <div class="container">
+      <h1 ><%= @list.name %></h1>
+      <p>Movie Listing</p>
+    </div>
+  </div>
+
+  <div class="container" align="right">
+   <%= link_to 'add movie', new_list_bookmark_path(@list), class: 'btn btn-info' %>
+   <%= link_to 'delete list', list_path(@list), method: :delete, class: 'btn btn-warning', data: { confirm: 'Click to confirm' } %>
+ </div>
+
+ <div class="container">
+  <div class="row">
+    <% @list.movies.each do |movie| %>
+    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+      <h5>
+        <strong><%= movie.title %></strong> |
+        <small>
+          Rated: <%= movie.rating %>
+            <small>
+              <%= link_to "(delete)", bookmark_path(bookmark), method: :delete, data: { confirm: "Click to confirm" } %>
+            </small>
+        </small>
+      </h5>
+      <p style="background-color: #FFFFE0">
+        <em><%= bookmark.comment %></em>
+      </p>
+      <p>
+        <%= movie.overview %>
+      </p>
+    <% end %>
+  </div>
+ </div>
+
+</body>
+</html>
