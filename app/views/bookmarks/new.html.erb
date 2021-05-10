@@ -1,5 +1,6 @@
 <div class="container py-5 w-100">
-  <div class="row h-200">
+
+  <div class="row h-200 d-block">
     <h3>Add to <strong><%= @list.name %></strong></h3>
     <%= simple_form_for [@list, @bookmark] do |f| %>
     <%= f.input :comment %>
@@ -7,6 +8,6 @@
     <%= f.submit class: 'btn btn-info w-100 mt-3' %>
     <% end %>
   </div>
+
 </div>
-</div>
-</div>
+

@@ -28,24 +28,26 @@
   <div class="row">
     <% @list.movies.each do |movie| %>
     <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-      <h5>
-        <strong><%= movie.title %></strong> |
+    <h5>
+      <strong><%= movie.title %></strong> |
+      <small>
+        Rated: <%= movie.rating %>
         <small>
-          Rated: <%= movie.rating %>
-            <small>
-              <%= link_to "(delete)", bookmark_path(bookmark), method: :delete, data: { confirm: "Click to confirm" } %>
-            </small>
+          <%= link_to "(delete)", bookmark_path(bookmark), method: :delete, data: { confirm: "Click to confirm" } %>
         </small>
-      </h5>
-      <p style="background-color: #FFFFE0">
-        <em><%= bookmark.comment %></em>
-      </p>
-      <p>
-        <%= movie.overview %>
-      </p>
+      </small>
+    </h5>
+  </div>
+  <div class="row">
+    <p style="background-color: #FFFFE0">
+      <em><%= bookmark.comment %></em>
+    </p>
+    <p>
+      <%= movie.overview %>
+    </p>
     <% end %>
   </div>
- </div>
+</div>
 
 </body>
 </html>
